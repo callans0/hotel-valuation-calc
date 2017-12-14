@@ -1,0 +1,136 @@
+html {
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+  }
+  *, 
+  *:before, 
+  *:after {
+    box-sizing: inherit;
+  }
+
+  body {
+      background-color: #F4F4F4;
+  }
+
+  h1 {
+      text-align: center;
+  }
+
+  form {
+      width: 100%;
+      width: 400px;
+      max-width: 90%;
+      margin: 20px auto;
+  }
+
+  form input {
+      font-size: 20px;
+      padding: 10px;
+      border: 2px solid #999;
+      border-left: 0;
+      border-radius: 0 7px 7px 0;
+      width: 100%;
+      color: #737373;   
+      font-family: 'Nunito', sans-serif;
+  }
+
+  #capRate {
+    border: 2px solid #999;
+    border-right: 0;
+    border-radius: 7px 0 0 7px;
+    padding: 10px 10px 10px 20px;
+  }
+
+  form input:focus {
+      outline: 0;
+  }
+  form input.error {
+      border-color: #ff0000;	
+  }
+  form label.error {
+      background-color: #ff0000;
+      color: #fff;
+      padding: 6px;
+      font-size: 11px;
+  }
+
+  form input:disabled {
+      background-color: #F4F4F4; 
+  }
+  
+  label {
+      color: #737373;
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-size: 16px;
+      letter-spacing: 0.05em
+  }
+  .flex {
+      display: flex;
+      justify-content: flex-start;
+  }
+
+  .flex .percentage {
+    justify-content: flex-end;  
+  }
+  .flex input {
+      flex: 1 1 300px;
+  }
+  .flex .currency,
+  .flex .percentage {
+      font-size: 18px;
+      padding: 0 10px 0 20px;
+      color: #737373;
+      border: 2px solid #999;
+      border-right: 0;
+      line-height: 2.5;
+      border-radius: 7px 0 0 7px;
+      background: white;
+  }
+
+  .flex .percentage {
+    border: 2px solid #999;
+    border-left: 0;
+    border-radius: 0 7px 7px 0; 
+  }
+
+  .flex .disabled {
+    background: #f4f4f4;  
+  }
+
+  button {
+	color: #fff;
+	width: 40%;
+	display: inline-block;
+	text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+	background: #494B92;
+	padding: 10px 0;
+	border-radius: 7px;
+	margin: 20px 0;
+    border: 2px solid #fff;
+    transition: all .25s ease-in-out;
+}
+
+button:hover {
+    color: #fff;
+    border: 2px solid #fff;
+    background: #010166;
+}
+
+button:focus {
+    outline: 0;
+}
+
+button:active {
+    background: #010166;
+    border: 1px solid #010166;
+    border-bottom: 1px solid #010166;
+    -moz-box-shadow: inset 0 0 6px 3px #010166, 0 1px 0 0 #fff;
+    -webkit-box-shadow: inset 0 0 6px 3px #010166, 0 1px 0 0 #fff;
+    text-shadow: 0 -1px 1px #010166;
+}
