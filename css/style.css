@@ -1,9 +1,14 @@
 html {
     box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
-    font-size: 18px;
-    font-weight: 300;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1em;
   }
+
+  input,
+  button {
+      border: 0;
+  }
+
   *, 
   *:before, 
   *:after {
@@ -12,10 +17,22 @@ html {
 
   body {
       background-color: #F4F4F4;
+      font-size: 18px;
+      color: #494B92;
+  }
+
+  .logo{
+      width: 80px;
+      margin: 0 auto; 
+      margin-top: 2em; 
   }
 
   h1 {
+      font-family: 'Bree Serif', serif;
+      font-size: 1.4em;
       text-align: center;
+      font-weight: 300;
+      color: #494B92;
   }
 
   form {
@@ -25,49 +42,64 @@ html {
       margin: 20px auto;
   }
 
+  .input-div {
+      margin: 40px 0;
+  }
+
   form input {
       font-size: 20px;
       padding: 10px;
-      border: 2px solid #999;
-      border-left: 0;
-      border-radius: 0 7px 7px 0;
+      border-bottom: 1px solid #494B92;
       width: 100%;
-      color: #737373;   
-      font-family: 'Nunito', sans-serif;
+      color: #010166;   
+      font-family: 'Open Sans Condensed', sans-serif;
   }
 
+  #currentValue,
+  #futureValue {
+      font-weight: bold;
+      color: #FF6201;
+  }
+
+  .flex:hover,
+  .flex:focus-within {
+    -webkit-box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
+    -ms-box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
+    -o-box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
+   }
+
+   .result:hover,
+   .result:focus-within {
+     box-shadow: none;
+   }
+
+
   #capRate {
-    border: 2px solid #999;
+    border-bottom: 1px solid #494B92;
     border-right: 0;
-    border-radius: 7px 0 0 7px;
     padding: 10px 10px 10px 20px;
   }
 
   form input:focus {
       outline: 0;
   }
-  form input.error {
-      border-color: #ff0000;	
-  }
-  form label.error {
-      background-color: #ff0000;
-      color: #fff;
-      padding: 6px;
-      font-size: 11px;
-  }
 
   form input:disabled {
-      background-color: #F4F4F4; 
+      background-color: #f4f4f4; 
   }
   
   label {
-      color: #737373;
+      /* text-transform: uppercase; */
+      color: #494B92;
+      font-weight: bold;
       display: block;
       margin-top: 10px;
       margin-bottom: 5px;
       font-size: 16px;
-      letter-spacing: 0.05em
   }
+
   .flex {
       display: flex;
       justify-content: flex-start;
@@ -83,18 +115,15 @@ html {
   .flex .percentage {
       font-size: 18px;
       padding: 0 10px 0 20px;
-      color: #737373;
-      border: 2px solid #999;
-      border-right: 0;
+      color: #494B92;
+      border-bottom: 1px solid #010166;
       line-height: 2.5;
-      border-radius: 7px 0 0 7px;
       background: white;
   }
 
   .flex .percentage {
-    border: 2px solid #999;
+    border-bottom: 1px solid #010166;
     border-left: 0;
-    border-radius: 0 7px 7px 0; 
   }
 
   .flex .disabled {
@@ -102,24 +131,27 @@ html {
   }
 
   button {
-	color: #fff;
-	width: 40%;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #494B92;
+    font-size: .8em;
+	/* width: 15%; */
 	display: inline-block;
 	text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
-	background: #494B92;
-	padding: 10px 0;
-	border-radius: 7px;
-	margin: 20px 0;
-    border: 2px solid #fff;
-    transition: all .25s ease-in-out;
+	background: #f4f4f4;
+    padding: 15px 0 2px;
+    margin-left: 94%;
+    border-bottom: 1px solid #494B92;
+    transition: all .15s ease-in-out; */
 }
 
+#resetButton {
+    margin-left: 90.5%;
+}
+
+
 button:hover {
-    color: #fff;
-    border: 2px solid #fff;
-    background: #010166;
+    color: #FF6201;
+    border-bottom-color: #FF6201;
 }
 
 button:focus {
@@ -127,10 +159,18 @@ button:focus {
 }
 
 button:active {
-    background: #010166;
-    border: 1px solid #010166;
-    border-bottom: 1px solid #010166;
-    -moz-box-shadow: inset 0 0 6px 3px #010166, 0 1px 0 0 #fff;
-    -webkit-box-shadow: inset 0 0 6px 3px #010166, 0 1px 0 0 #fff;
-    text-shadow: 0 -1px 1px #010166;
+    border-bottom: 2px solid #FF6201;
+    font-weight: bold;
+} 
+
+/* LARGER STYLES */
+
+@media screen and (min-width: 560px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .logo {
+        width: 120px;
+    }
 }

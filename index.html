@@ -3,7 +3,9 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Hotel Valuation Calculator</title>
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <link rel="icon" type="image/png" href="favicon.png" sizes="32x32" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
         <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -14,70 +16,75 @@
 
     <body>
         <div class="container">
+            <div class="logo">
+                <img src="hvc_logo.svg" alt="logo">
+            </div>
             <h1>Hotel Valuation Calculator</h1>
             <div style="display:none"><p></p></div>
                 <form id="form" method="POST" action="index.html">
 
-                    <div>
+                    <div class="input-div">
                         <label for="annualProfit">Annual Profit:</label>
                         <div class="flex">
                             <span class="currency">$</span>
-                            <input class="input currencyInput" type="text" id="annualProfit" name="annualProfit" required>
+                            <input class="input current currencyInput" type="text" id="annualProfit" name="annualProfit" required>
                         </div>
                     </div>
 
-                    <div>
-                        <label for="capRate">Cap Rate:</label>
+                    <div class="input-div">
+                        <label for="capRate">Cap Rate %:</label>
                         <div class="flex percentage">
-                            <input class="input" type="text" id="capRate" name="capRate" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" required>
+                            <input class="input current" type="text" id="capRate" name="capRate" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" required>
                             <span class="percentage">%</span>
                         </div>
                     </div>
 
-                    <div>
+                    <div class="input-div">
                         <label for="currentValue">Current Market Value:</label>
-                        <div class="flex">
-                            <span class="currency disabled">$</span>
-                            <input class="input" type="text" id="currentValue" name="currentValue" disabled>
+                        <div class="flex result">
+                            <span class="currency disabled result-unit">$</span>
+                            <input class="input current" type="text" id="currentValue" name="currentValue" disabled>
                         </div>
+                        <!-- <button id="resetButtonCurrent" type="reset" name="reset1">clear</button> -->
                     </div>
 
                     <div>
                         <p>Can turnover of this business be improved?</p>
 
-                        <div>
-                            <label for="barTurnover">Bar:</label>
+                        <div class="input-div">
+                            <label for="barTurnover">Bar <small>(p.a.)</small>:</label>
                             <div class="flex">
                                 <span class="currency">$</span>
-                                <input class="input currencyInput futureValueInput" type="text" id="barTurnover" name="barTurnover">
+                                <input class="input currencyInput futureValueInput future" type="text" id="barTurnover" name="barTurnover">
                             </div>
                         </div>
 
-                        <div>
-                            <label for="foodTurnover">Food:</label>
+                        <div class="input-div">
+                            <label for="foodTurnover">Food <small>(p.a.)</small>:</label>
                             <div class="flex">
                                 <span class="currency">$</span>
-                                <input class="input currencyInput futureValueInput" type="text" id="foodTurnover" name="foodTurnover">
+                                <input class="input currencyInput futureValueInput future" type="text" id="foodTurnover" name="foodTurnover">
                             </div>
                         </div>
 
-                        <div>
-                            <label for="gamingTurnover">Gaming:</label>
+                        <div class="input-div">
+                            <label for="gamingTurnover">Gaming <small>(p.a.)</small>:</label>
                             <div class="flex">
                                 <span class="currency">$</span>
-                                <input class="input currencyInput futureValueInput" type="text" id="gamingTurnover" name="gamingTurnover">
+                                <input class="input currencyInput futureValueInput future" type="text" id="gamingTurnover" name="gamingTurnover">
                             </div>
                         </div>
                     </div>
 
-                    <div>
+                    <div class="input-div">
                         <label for="futureValue">Estimated Future Value:</label>
-                        <div class="flex">
-                            <span class="currency disabled">$</span>
-                            <input class="input" type="text" id="futureValue" name="futureValue" disabled>
+                        <div class="flex result">
+                            <span class="currency disabled result-unit">$</span>
+                            <input class="input future" type="text" id="futureValue" name="futureValue" disabled>
                     </div>
 
-                    <button id="resetButton" type="reset" name="reset">Reset</button>
+                    <!-- <button id="resetButtonFuture" type="reset" name="reset2">clear</button> -->
+                    <button id="resetButton" type="reset" name="reset3">clear</button>
                     
                 </form>
             </div>

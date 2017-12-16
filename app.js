@@ -11,8 +11,19 @@ document.addEventListener('DOMContentLoaded', function(event){
     const $gamingTurnover = document.getElementById('gamingTurnover');
     const $futureValue = document.getElementById('futureValue');
     const $futureValueInputs = document.getElementsByClassName('futureValueInput');
+    // reset all
     const $allInputs = document.getElementsByClassName('input');
     const resetButton = document.getElementById('resetButton');
+    // reset current
+    const $currentInputs = document.getElementsByClassName('current');
+    console.log($currentInputs);
+    const resetButtonCurrent = document.getElementById('resetButtonCurrent');
+    console.log(resetButtonCurrent);
+    //reset future
+    const $futureInputs = document.getElementsByClassName('future');
+    console.log($futureInputs);
+    const resetButtonFuture = document.getElementById('resetButtonFuture');
+    console.log(resetButtonFuture);
 
     const barFactor = '0.45';
     const foodFactor = '0.20';
@@ -74,9 +85,11 @@ document.addEventListener('DOMContentLoaded', function(event){
         let annProf = $annualProfit.value;
         // If any of the inputs are falsy return empty string, else return current value (to 2 dp)
         if ( (typeof capRate == 'undefined' || !capRate || capRate == '0') || (typeof annProf == 'undefined' || !annProf || annProf == '0') ) {
-              return "";
+            document.getElementsByClassName('result-unit')[0].style.color = "#494B92";
+            return "";
         } else {
             const currValue = (parseInt($annualProfit.value.replace(/,/g, ''))) / ($capRate.value / 100);
+            document.getElementsByClassName('result-unit')[0].style.color = "#FF6201";
             return delimitNumbers(currValue.toFixed(0));
         }
     };
@@ -92,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function(event){
     //FUTURE MARKET VALUE
     function calculateFutureValue() {
         if ( (typeof $currentValue.value == 'undefined' || !$currentValue.value || $currentValue.value == '0') ) {
+            document.getElementsByClassName('result-unit')[1].style.color = "#494B92";
             return "";
         } else {
             let capRate = parseInt($capRate.value);
@@ -121,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function(event){
             const newAnnualProfit = (annProf2 + barProfit + foodProfit + gamingProfit) / ($capRate.value / 100);
       
             if ( !isNaN(newAnnualProfit) || newAnnualProfit == 'undefined' ) {
+                document.getElementsByClassName('result-unit')[1].style.color = "#FF6201";
                 return delimitNumbers(newAnnualProfit.toFixed(0));
             } else {
                 return "";
@@ -138,6 +153,25 @@ document.addEventListener('DOMContentLoaded', function(event){
     $('#resetButton').on( 'click', () => {
         for ( i = 0; i < $allInputs.length; i++ ) {
             $allInputs[i].value = '';
+            calculateCurrentValue();
+            calculateFutureValue();
+        }
+    });
+
+
+    $('#resetButtonCurrent').on( 'click', () => {
+        for ( i = 0; i < $currentInputs.length; i++ ) {
+            $currentInputs[i].value = '';
+            calculateCurrentValue();
+            calculateFutureValue();
+        }
+    });
+
+    $('#resetButtonFuture').on( 'click', () => {
+        for ( i = 0; i < $futureInputs.length; i++ ) {
+            $futureInputs[i].value = '';
+            calculateCurrentValue();
+            calculateFutureValue();
         }
     });
 
