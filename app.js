@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function(event){
         // If any of the inputs are falsy return empty string, else return current value (to 2 dp)
         if ( (typeof capRate == 'undefined' || !capRate || capRate == '0') || (typeof annProf == 'undefined' || !annProf || annProf == '0') ) {
             document.getElementsByClassName('result-unit')[0].style.color = "#494B92";
+            document.getElementsByClassName('result-unit')[2].style.color = "#494B92";
             return "";
         } else {
             const currValue = (parseInt($annualProfit.value.replace(/,/g, ''))) / ($capRate.value / 100);
@@ -174,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function(event){
 
             const futureValue = (annProf2 + barProfit + foodProfit + gamingProfit + otherProfit) / ($capRate.value / 100);
     
-            if ( !isNaN(futureValue) || futureValue == 'undefined' ) {
+            if ( !isNaN(futureValue) || futureValue == 'undefined' || futureValue == '0' ) {
                 document.getElementsByClassName('result-unit')[2].style.color = "#FF6201";
                 return delimitNumbers(futureValue.toFixed(0));
             } else {
@@ -210,14 +211,24 @@ document.addEventListener('DOMContentLoaded', function(event){
 
     const $resetButtons = document.querySelectorAll('button');
     for ( i = 0; i < $resetButtons.length; i++ ) {
-        console.log($currValueInputs);
-        $resetButtons[i].addEventListener( "click", () => {
+        $resetButtons[i].addEventListener( "click", (event) => {
             event.preventDefault();
-            for ( i = 0; i < $currValueInputs.length; i++ ) {
-                $currValueInputs[i].value = '';
-                calculateCurrentValue();
-                calculateFutureValue();
+            var buttonId = event.target.id;
+            if ( buttonId === "resetButtonCurrent") {
+                for ( i = 0; i < $currValueInputs.length; i++ ) {
+                    $currValueInputs[i].value = '';
+                    $currentValue.value = calculateCurrentValue();
+                    $futureValue.value = calculateFutureValue();
+                }
+            } else if ( buttonId === "resetButtonFuture" ) {
+                for ( i = 0; i < $futureValueInputs.length; i++ ) {
+                    $futureValueInputs[i].value = '';
+                    $profitIncrease.value = calculateProfitIncrease();
+                    $futureValue.value = calculateFutureValue();
+                    console.log($futureValue.value);
+                }
             }
+
         });
     };
 
