@@ -15,44 +15,51 @@
     </head>
 
     <body>
-        <div class="container">
-            <div class="logo">
-                <img src="hvc_logo.svg" alt="logo">
-            </div>
+        <div class="header">
+            <img class="logo" src="hvc_logo.svg" alt="logo">
             <h1>Hotel Valuation Calculator</h1>
-            <div style="display:none"><p></p></div>
-                <form id="form" method="POST" action="index.html">
+        </div>
 
+        <div class="calculator">
+            <form id="form" method="POST" action="index.html">
+                
+                <div class="current-calculator"> <!-- start current calculator -->
+                    <h3>Current Value</h3>
+                    <p>Enter current details of the business</p>
                     <div class="input-div">
-                        <label for="annualProfit">Annual Profit:</label>
+                        <label for="annualProfit">Annual Profit</label>
                         <div class="flex">
                             <span class="currency">$</span>
-                            <input class="input current currencyInput" type="text" id="annualProfit" name="annualProfit" required>
+                            <input class="input current currencyInput" type="text" id="annualProfit" name="annualProfit">
                         </div>
                     </div>
 
                     <div class="input-div">
-                        <label for="capRate">Cap Rate %:</label>
+                        <label for="capRate">Cap Rate %</label>
                         <div class="flex percentage">
-                            <input class="input current" type="text" id="capRate" name="capRate" maxlength="3" pattern="([0-9]|[0-9]|[0-9])" required>
+                            <input class="input current" type="text" id="capRate" name="capRate" maxlength="3" pattern="([0-9]|[0-9]|[0-9])">
                             <span class="percentage">%</span>
                         </div>
                     </div>
 
                     <div class="input-div">
-                        <label for="currentValue">Current Market Value:</label>
+                        <label for="currentValue">Current Market Value</label>
                         <div class="flex result">
                             <span class="currency disabled result-unit">$</span>
                             <input class="input current" type="text" id="currentValue" name="currentValue" disabled>
                         </div>
-                        <!-- <button id="resetButtonCurrent" type="reset" name="reset1">clear</button> -->
                     </div>
+                    <button id="resetButtonCurrent" type="reset" name="reset">clear</button>
+                </div> <!-- end current calculator -->
 
-                    <div>
-                        <p>Can turnover of this business be improved?</p>
+                <div class="future-calculator"> <!-- start future calculator -->
+                    <h3>Potential Future Value</h3>
+                    <p>Can turnover of this business be improved?</p>
+
+                    <div class="profit-inputs"> <!-- start profit inputs -->
 
                         <div class="input-div">
-                            <label for="barTurnover">Bar <small>(p.a.)</small>:</label>
+                            <label for="barTurnover">Bar <small>(p.a)</small></label>
                             <div class="flex">
                                 <span class="currency">$</span>
                                 <input class="input currencyInput futureValueInput future" type="text" id="barTurnover" name="barTurnover">
@@ -60,7 +67,7 @@
                         </div>
 
                         <div class="input-div">
-                            <label for="foodTurnover">Food <small>(p.a.)</small>:</label>
+                            <label for="foodTurnover">Food <small>(p.a)</small></label>
                             <div class="flex">
                                 <span class="currency">$</span>
                                 <input class="input currencyInput futureValueInput future" type="text" id="foodTurnover" name="foodTurnover">
@@ -68,36 +75,53 @@
                         </div>
 
                         <div class="input-div">
-                            <label for="gamingTurnover">Gaming <small>(p.a.)</small>:</label>
+                            <label for="gamingTurnover">Gaming <small>(p.a)</small></label>
                             <div class="flex">
                                 <span class="currency">$</span>
                                 <input class="input currencyInput futureValueInput future" type="text" id="gamingTurnover" name="gamingTurnover">
                             </div>
                         </div>
-                    </div>
+
+                        <div class="input-div">
+                            <label for="otherTurnover">Other <small>(p.a)</small></label>
+                            <div class="flex">
+                                <span class="currency">$</span>
+                                <input class="input currencyInput futureValueInput future" type="text" id="otherTurnover" name="otherTurnover">
+                            </div>
+                        </div>
+
+                    </div> <!-- end profitInputs -->
 
                     <div class="input-div">
-                        <label for="futureValue">Estimated Future Value:</label>
+                        <label for="profitIncrease">Estimated Increase in Profit <small>(p.a)</small></label>
+                        <div class="flex result">
+                            <span class="currency disabled result-unit">$</span>
+                            <input class="input future" type="text" id="profitIncrease" name="profitIncrease" disabled>
+                        </div>
+                    </div>    
+
+                    <div class="input-div">
+                        <label for="futureValue">Estimated Future Value</label>
                         <div class="flex result">
                             <span class="currency disabled result-unit">$</span>
                             <input class="input future" type="text" id="futureValue" name="futureValue" disabled>
+                        </div>
                     </div>
 
-                    <!-- <button id="resetButtonFuture" type="reset" name="reset2">clear</button> -->
-                    <button id="resetButton" type="reset" name="reset3">clear</button>
-                    
-                </form>
-            </div>
-        
-        </div>
+                    <button id="resetButtonFuture" type="reset" name="reset">clear</button>
 
+                </div> <!-- end future calculator -->
+                    
+            </form>
+        </div> <!-- end calculator -->
         <footer>
             <div class="footer-flex">
                 <a class="footer-logo" href="#"><img class="white-logo" src="hvc_logo_white.svg" alt="logo"></a>
-                </ul>
                 <p class="copyright">&copy; 2017 clareallanson.com.au</p>
             </div>
         </footer>
+
+
         <script src="app.js"></script>
     </body>
 

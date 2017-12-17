@@ -4,30 +4,26 @@ document.addEventListener('DOMContentLoaded', function(event){
     const $capRate = document.getElementById('capRate');
     const $annualProfit = document.getElementById('annualProfit');
     const $currentValue = document.getElementById('currentValue');
-    const $currValueInputs = document.getElementsByClassName('input');
-    const $currencyInput = document.getElementsByClassName('currencyInput');
-    const $barTurnover = document.getElementById('barTurnover');
-    const $foodTurnover = document.getElementById('foodTurnover');
-    const $gamingTurnover = document.getElementById('gamingTurnover');
-    const $futureValue = document.getElementById('futureValue');
-    const $futureValueInputs = document.getElementsByClassName('futureValueInput');
-    // reset all
-    const $allInputs = document.getElementsByClassName('input');
-    const resetButton = document.getElementById('resetButton');
-    // reset current
-    const $currentInputs = document.getElementsByClassName('current');
-    console.log($currentInputs);
-    const resetButtonCurrent = document.getElementById('resetButtonCurrent');
-    console.log(resetButtonCurrent);
-    //reset future
-    const $futureInputs = document.getElementsByClassName('future');
-    console.log($futureInputs);
-    const resetButtonFuture = document.getElementById('resetButtonFuture');
-    console.log(resetButtonFuture);
+    const $currValueInputs = document.getElementsByClassName('current');
+    const $currencyInput = document.getElementsByClassName('currencyInput'); //use to format currency fields
+
+    const $barTurnover = document.getElementById('barTurnover'); //object
+    const $foodTurnover = document.getElementById('foodTurnover'); //object
+    const $gamingTurnover = document.getElementById('gamingTurnover'); //object
+    const $otherTurnover = document.getElementById('otherTurnover'); //object
+    const $profitIncrease = document.getElementById('profitIncrease'); //object
+    const $futureValue = document.getElementById('futureValue'); //object
+    const $futureValueInputs = document.getElementsByClassName('futureValueInput'); //object
 
     const barFactor = '0.45';
     const foodFactor = '0.20';
     const gamingFactor = '0.60';
+    const otherFactor = '0.20';
+
+    barTurnoverValue = 0;
+    foodTurnover = 0;
+    gamingTurnoverValue = 0;
+    otherTurnoverValue = 0;
 
 
     //********** GLOBAL FUNCTIONS **************//
@@ -79,10 +75,17 @@ document.addEventListener('DOMContentLoaded', function(event){
     });
 
     //********** CALCULATIONS **************//
+
+    
     // CURRENT MARKET VALUE
     function calculateCurrentValue(){
-        let capRate = parseInt($capRate.value);
-        let annProf = $annualProfit.value;
+        if ( !$capRate.value ) {
+            var capRate = 0;
+        } else {
+            var capRate = parseInt($capRate.value) 
+        }
+        var annProf = $annualProfit.value;
+        console.log(annProf, typeof annProf);
         // If any of the inputs are falsy return empty string, else return current value (to 2 dp)
         if ( (typeof capRate == 'undefined' || !capRate || capRate == '0') || (typeof annProf == 'undefined' || !annProf || annProf == '0') ) {
             document.getElementsByClassName('result-unit')[0].style.color = "#494B92";
@@ -94,13 +97,43 @@ document.addEventListener('DOMContentLoaded', function(event){
         }
     };
 
-    // Listens for input on the cap rate and annual profit fields and calculates / recalculates market value  
-    for ( i = 0; i < $currValueInputs.length; i++ ) {
-        $currValueInputs[i].addEventListener( "keyup", () => {
-            $currentValue.value = calculateCurrentValue();
-            $futureValue.value = calculateFutureValue();
-        });
-    };
+
+    // PROFIT INCREASE
+    function calculateProfitIncrease() {
+        if ( !$barTurnover.value && !$foodTurnover.value && !$gamingTurnover.value && !otherTurnover.value ) {
+            document.getElementsByClassName('result-unit')[1].style.color = "#494B92";
+            return "";
+        } else {
+            if ( !$barTurnover.value ) {
+            var barTurnoverValue = 0;
+            } else {
+            var barTurnoverValue = parseInt($barTurnover.value.replace(/,/g, ''));
+            }
+
+            if ( !$foodTurnover.value ) {
+                var foodTurnoverValue = 0;
+            } else {
+                var foodTurnoverValue = parseInt($foodTurnover.value.replace(/,/g, ''));
+            }
+
+            if ( !$gamingTurnover.value ) {
+                var gamingTurnoverValue = 0;
+            } else {
+                var gamingTurnoverValue = parseInt($gamingTurnover.value.replace(/,/g, ''));
+            }
+
+            if ( !$otherTurnover.value ) {
+                var otherTurnoverValue = 0;
+            } else {
+                var otherTurnoverValue = parseInt($otherTurnover.value.replace(/,/g, ''));
+            }
+            const profitIncrease = (barTurnoverValue * barFactor) + (foodTurnoverValue * foodFactor) + (gamingTurnoverValue * gamingFactor) + (otherTurnoverValue * otherFactor);
+            console.log(profitIncrease, typeof profitIncrease);
+            return delimitNumbers(profitIncrease.toFixed(0));
+        }
+    }
+
+
 
     //FUTURE MARKET VALUE
     function calculateFutureValue() {
@@ -113,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function(event){
             const barTurnoverValue = parseInt($barTurnover.value.replace(/,/g, ''));
             const foodTurnoverValue = parseInt($foodTurnover.value.replace(/,/g, ''));
             const gamingTurnoverValue = parseInt($gamingTurnover.value.replace(/,/g, ''));
+            const otherTurnoverValue = parseInt($otherTurnover.value.replace(/,/g, ''));
 
             if (!barTurnoverValue) {
                 var barProfit = 0;
@@ -132,47 +166,61 @@ document.addEventListener('DOMContentLoaded', function(event){
                 var gamingProfit = gamingTurnoverValue * gamingFactor;
             }
 
-            const newAnnualProfit = (annProf2 + barProfit + foodProfit + gamingProfit) / ($capRate.value / 100);
-      
-            if ( !isNaN(newAnnualProfit) || newAnnualProfit == 'undefined' ) {
-                document.getElementsByClassName('result-unit')[1].style.color = "#FF6201";
-                return delimitNumbers(newAnnualProfit.toFixed(0));
+            if (!otherTurnoverValue) {
+                var otherProfit = 0;
             } else {
+                var otherProfit = otherTurnoverValue * otherFactor;
+            }
+
+            const futureValue = (annProf2 + barProfit + foodProfit + gamingProfit + otherProfit) / ($capRate.value / 100);
+    
+            if ( !isNaN(futureValue) || futureValue == 'undefined' ) {
+                document.getElementsByClassName('result-unit')[2].style.color = "#FF6201";
+                return delimitNumbers(futureValue.toFixed(0));
+            } else {
+                document.getElementsByClassName('result-unit')[2].style.color = "#494B92";
                 return "";
             }
         }
     };
 
-    for ( i = 0; i < $futureValueInputs.length; i++ ) {
-        $futureValueInputs[i].addEventListener( "keyup", () => {
+
+    /////////////// EVENT LISTENERS //////////////
+
+    // Listens for input on the cap rate and annual profit fields and calculates CURRENT market value  
+    for ( i = 0; i < $currValueInputs.length; i++ ) {
+        $currValueInputs[i].addEventListener( "keyup", () => {
+            $currentValue.value = calculateCurrentValue();
             $futureValue.value = calculateFutureValue();
         });
     };
 
-    // RESET BUTTON
-    $('#resetButton').on( 'click', () => {
-        for ( i = 0; i < $allInputs.length; i++ ) {
-            $allInputs[i].value = '';
-            calculateCurrentValue();
-            calculateFutureValue();
-        }
-    });
+    // Listens for input on the increase profit fields and calculates PROFIT INCREASE + FUTURE market value
+    for ( i = 0; i < $futureValueInputs.length; i++ ) {
+        $futureValueInputs[i].addEventListener( "keyup", () => {
+            $futureValue.value = calculateFutureValue();
+            $profitIncrease.value = calculateProfitIncrease();
+        });
+    };
 
 
-    $('#resetButtonCurrent').on( 'click', () => {
-        for ( i = 0; i < $currentInputs.length; i++ ) {
-            $currentInputs[i].value = '';
-            calculateCurrentValue();
-            calculateFutureValue();
-        }
-    });
+    // RESET BUTTONS
+    // const $resetCurrent = document.getElementById('resetButtonCurrent');
+    // const $resetFuture = document.getElementById('resetButtonFuture');
 
-    $('#resetButtonFuture').on( 'click', () => {
-        for ( i = 0; i < $futureInputs.length; i++ ) {
-            $futureInputs[i].value = '';
-            calculateCurrentValue();
-            calculateFutureValue();
-        }
-    });
+    const $resetButtons = document.querySelectorAll('button');
+    for ( i = 0; i < $resetButtons.length; i++ ) {
+        console.log($currValueInputs);
+        $resetButtons[i].addEventListener( "click", () => {
+            event.preventDefault();
+            for ( i = 0; i < $currValueInputs.length; i++ ) {
+                $currValueInputs[i].value = '';
+                calculateCurrentValue();
+                calculateFutureValue();
+            }
+        });
+    };
+
+
 
 }); // end

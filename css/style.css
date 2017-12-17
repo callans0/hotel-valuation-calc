@@ -9,10 +9,6 @@ html {
       border: 0;
   }
 
-  ul {
-      list-style: none;
-  }
-
   *, 
   *:before, 
   *:after {
@@ -26,10 +22,24 @@ html {
       color: #494B92;
   }
 
+  p {
+      margin: 0;
+  }
+
+  /* Header Styles */
+
+  .header {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      max-width: 35em;
+  }
+
   .logo{
       width: 80px;
       margin: 0 auto; 
-      margin-top: 2em; 
+      margin-top: 2em;
+      text-align: centre; 
   }
 
   h1 {
@@ -40,21 +50,39 @@ html {
       color: #494B92;
   }
 
-  form {
-      width: 100%;
-      width: 400px;
+
+  /* Body Styles */
+
+  .calculator {
       max-width: 80%;
+      background-color: #fff;
       margin: 20px auto;
+      padding: 15px 15px 30px 15px;
+     -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+     -moz-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+     -ms-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+     -o-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
-  .input-div {
-      margin: 40px 0;
+  form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin: 10px auto;
+  }
+
+  .profit-inputs {
+      display: flex;
+      flex-direction: column;
   }
 
   form input {
       font-size: 20px;
       padding: 10px;
-      border-bottom: 1px solid #494B92;
+      border: 1px solid #494B92;
+      border-left: 0;
+      border-radius: 0 5px 5px 0;
       width: 100%;
       color: #010166;   
       font-family: 'Open Sans Condensed', sans-serif;
@@ -68,11 +96,11 @@ html {
 
   .flex:hover,
   .flex:focus-within {
-    -webkit-box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
-    -ms-box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
-    -o-box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
-    box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.16);
+    -ms-box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.16);
+    -o-box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.16); 
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
    }
 
    .result:hover,
@@ -82,8 +110,9 @@ html {
 
 
   #capRate {
-    border-bottom: 1px solid #494B92;
+    border: 1px solid #494B92;
     border-right: 0;
+    border-radius: 5px 0 0 5px;
     padding: 10px 10px 10px 20px;
   }
 
@@ -96,12 +125,11 @@ html {
   }
   
   label {
-      /* text-transform: uppercase; */
       color: #494B92;
       font-weight: bold;
       display: block;
       margin-top: 10px;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
       font-size: 16px;
   }
 
@@ -119,15 +147,18 @@ html {
   .flex .currency,
   .flex .percentage {
       font-size: 18px;
-      padding: 0 10px 0 20px;
+      padding: 0 10px 0 10px;
       color: #494B92;
-      border-bottom: 1px solid #010166;
+      border: 1px solid #010166;
+      border-right: 0;
+      border-radius: 5px 0 0 5px;
       line-height: 2.5;
       background: white;
   }
 
   .flex .percentage {
-    border-bottom: 1px solid #010166;
+    border: 1px solid #010166;
+    border-radius: 0 5px 5px 0;
     border-left: 0;
   }
 
@@ -138,21 +169,16 @@ html {
   button {
     font-family: 'Open Sans Condensed', sans-serif;
     color: #494B92;
+    text-align: right;
     font-size: .8em;
-	/* width: 15%; */
 	display: inline-block;
 	text-decoration: none;
-	background: #f4f4f4;
-    padding: 15px 0 2px;
-    margin-left: 94%;
+	background: #fff;
+    padding: 0;
     border-bottom: 1px solid #494B92;
     transition: all .15s ease-in-out; 
+    margin-left: 92%;
 }
-
-#resetButton {
-    margin-left: 94.5%;
-}
-
 
 button:hover {
     color: #FF6201;
@@ -168,12 +194,14 @@ button:active {
     font-weight: bold;
 }
 
+
+
 footer {
     width: 100%;
-    min-height: 30px;
     background-color: #494B92;
     color: #fff;
     text-align: centre;
+    margin-top: 80px;
 }
 
 .footer-flex {
@@ -196,7 +224,7 @@ footer p {
 
 /* LARGER STYLES */
 
-@media screen and (min-width: 560px) {
+@media screen and (min-width: 670px) {
     h1 {
         font-size: 2em;
     }
@@ -204,4 +232,46 @@ footer p {
     .logo {
         width: 120px;
     }
+
+    form {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .current-calculator,
+    .future-calculator {
+        padding: 0 20px;
+        min-width: 40%;
+    }
+
+    .input-div {
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 860px) {
+
+    .calculator {
+        max-width: 70%;
+    }
+    .profit-inputs {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .profit-inputs .input-div {
+        min-width: 47.5%;
+        max-width: 50%;
+    }
+
+    .profit-inputs .input-div:nth-of-type(odd) {
+        min-width: 47%;
+        max-width: 47%;
+    }
+
+    #resetButtonFuture {
+    margin-left: 95%;
+}
+
 }
