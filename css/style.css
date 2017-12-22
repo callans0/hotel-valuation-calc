@@ -44,7 +44,7 @@ html {
 
   h1 {
       font-family: 'Bree Serif', serif;
-      font-size: 1.4em;
+      font-size: 1.6em;
       text-align: center;
       font-weight: 300;
       color: #494B92;
@@ -54,7 +54,7 @@ html {
   /* Body Styles */
 
   .calculator {
-      max-width: 80%;
+      max-width: 90%;
       background-color: #fff;
       margin: 20px auto;
       padding: 15px 15px 30px 15px;
@@ -231,6 +231,10 @@ footer p {
 
     .logo {
         width: 120px;
+    }
+
+    .calculator {
+        max-width: 80%;
     }
 
     form {
