@@ -18,7 +18,7 @@ html {
   body {
       margin: 0;
       background-color: #F4F4F4;
-      font-size: 18px;
+      font-size: 1.125em;
       color: #494B92;
   }
 
@@ -78,7 +78,7 @@ html {
   }
 
   form input {
-      font-size: 20px;
+      font-size: 1.25em;
       padding: 10px;
       border: 1px solid #494B92;
       border-left: 0;
@@ -130,7 +130,7 @@ html {
       display: block;
       margin-top: 10px;
       margin-bottom: 3px;
-      font-size: 16px;
+      font-size: 1em;
   }
 
   .flex {
@@ -146,7 +146,7 @@ html {
   }
   .flex .currency,
   .flex .percentage {
-      font-size: 18px;
+      font-size: 1.125em;
       padding: 0 10px 0 10px;
       color: #494B92;
       border: 1px solid #010166;
